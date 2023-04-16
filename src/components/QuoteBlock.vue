@@ -1,5 +1,5 @@
 <template>
-  <div class="quote-block">
+  <div class="quote-block" v-if="quote">
     <div class="content">
       {{ quote.content }}
     </div>
