@@ -10,12 +10,20 @@
 </template>
 
 <script>
+  import QuoteService from "@/services/quote.service";
+
   export default {
-   computed: {
-     quote() {
-       return this.$store.getters.getQuote;
+   data() {
+     return {
+       quote: ''
      }
    },
+   created() {
+     QuoteService.getRandomQuote()
+         .then(value => {
+           this.quote = value;
+         });
+   }
   }
 </script>
 

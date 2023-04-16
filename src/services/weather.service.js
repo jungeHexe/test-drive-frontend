@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
 
     getWeatherForPoint(point) {
-        return axios.post(`http://localhost:8042/api/weather/`, point)
+        return axios.get(`http://localhost:9090/api/weather/get/`,{ params: { longitude: point[0], latitude: point[1] } })
             .then(res => {
                 return res.data;
             }).catch(err => {

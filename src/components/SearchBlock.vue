@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <input v-model="search" type="text" placeholder="Введите десятичные координаты через пробел"/>
+    <input v-model="search" type="text" placeholder="Введите долготу и широту в десятичных координатах через пробел"/>
     <button @click="searchWeather">Search</button>
   </div>
 </template>
@@ -15,16 +15,19 @@
     methods: {
       searchWeather() {
         if (!this.search || !this.validatePoint()) {
-          alert('Данные заполнены некорректно.');
+          alert('Данные заполнены некорректно. Широта может принимать значения от −90° до +90°, а долгота - от −180° до +180°');
           return;
         }
         this.$emit('get-weather', this.search);
         this.search = '';
       },
       validatePoint() {
-        const regexp = /^[0-9]*[.][0-9]+$/;
+        const regexp = /^[-]?[0-9]*[.][0-9]+$/;
         const points = this.search.split(' ');
         if (points.length !== 2) {
+          return false;
+        }
+        if (!(Math.abs(+points[0]) <= 180 && Math.abs(+points[1]) <= 90)) {
           return false;
         }
         return points.map(el => el.match(regexp)).find(el => !el) === undefined;

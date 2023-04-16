@@ -30,9 +30,9 @@ export default {
   },
   methods: {
     searchWeather(point) {
-      WeatherService.getWeatherForPoint(point)
+      WeatherService.getWeatherForPoint(point.split(' '))
           .then(value => {
-             this.weather = JSON.parse(value);
+             this.weather = value;
           });
     }
   }
