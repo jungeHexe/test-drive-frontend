@@ -1,26 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <ContainerPage></ContainerPage>
+    <img class="girl-img" src="./assets/girl.png"/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ContainerPage from "@/components/ContainerPage";
+import QuoteService from "@/services/quote.service";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ContainerPage,
+  },
+  created() {
+    QuoteService.getRandomQuote()
+        .then(value => {
+          this.$store.dispatch('setQuote', value);
+        });
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

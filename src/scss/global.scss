@@ -1,0 +1,44 @@
+@import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap');
+
+body {
+  background-color: #FF898B;
+  background-size: 100%;
+  font-family: 'Sofia Sans', sans-serif;
+  color: #FAE4D0;
+}
+
+.girl-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+$justify-contents: space-between, right, left, center;
+
+@each $type in $justify-contents {
+  .justify-content-#{$type} {
+    justify-content: $type;
+  }
+}
+
+$sizes: ('sm': 8px, 'md': 16px, 'lg': 32px);
+
+@each $type, $size in $sizes {
+  .p-#{$type} {
+    padding: $size;
+  }
+  .m-#{$type} {
+    margin: $size;
+  }
+}
